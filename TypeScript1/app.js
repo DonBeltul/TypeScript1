@@ -1,50 +1,36 @@
 "use strict";
-class Coche {
-    constructor(matricula, potencia, velocidad, modelo) {
-        this.matricula = "";
-        this.potencia = 0;
-        this.velocidad = 0;
-        this.modelo = "";
-        this.matricula = matricula;
-        this.potencia = potencia;
-        this.velocidad = velocidad;
-        this.modelo = modelo;
+class Envio {
+    constructor(identificador, numEnvio, precioEnvio, recibido) {
+        this.identificador = "";
+        this.numEnvio = 0;
+        this.identificador = identificador;
+        this.numEnvio = numEnvio;
+        this.precioEnvio = precioEnvio;
+        this.recibido = recibido;
+    }
+    calcular() {
+        let iva = this.precioEnvio * 0.21;
+        return `El precio del iva de ${this.precioEnvio.toString()} es ${iva.toString()} <br/>`;
+    }
+    validarId() {
+        let patron = /^[A-H]{2}[0-9]{2}[I-Z]{2}$/;
+        return (patron.test(this.identificador));
     }
     imprime() {
-        return `El coche con matricula: + ${this.matricula}   , de modelo ` +
-            `${this.modelo} , tiene una velocidad de :` + ` ${this.velocidad.toString()}
-        y una potencia de  ${this.potencia} caballos  <br />`;
-    }
-    velocidadCrucero() {
-        let veloz = this.velocidad;
-        let potente = this.potencia;
-        let resultado = Number(veloz) / Number(potente);
-        return resultado;
+        return `Este envio con el identificador ${this.identificador.toString()}, con numero de envio ${this.numEnvio.toString()}
+        , con un precio de ${this.precioEnvio.toString()} y estado de recepcion es: ${this.recibido} <br/>`;
     }
 }
-let Coche1 = new Coche("Zaader", 120.5, 110, "Seat 500");
-let Coche2 = new Coche("ZZ-2443", 130.3, 125, "Volvo 678");
-let Coche3 = new Coche("iuhsuahs", 150.8, 135.6, "Mercedes 500");
-function velocidadMedia() {
-    let suma = 0;
-    suma = Number(Coche1.velocidad) + Number(Coche2.velocidad) + Number(Coche3.velocidad);
-    let media = 0;
-    media = suma / 3;
-    return media;
-}
-function potenciaMedia() {
-    let suma = 0;
-    suma = Number(Coche1.potencia) + Number(Coche2.potencia) + Number(Coche3.potencia);
-    let media = 0;
-    media = suma / 3;
-    return media;
-}
-document.writeln(Coche1.imprime());
-document.writeln(Coche2.imprime());
-document.writeln(Coche3.imprime());
-document.writeln(Coche1.velocidadCrucero().toString());
-document.writeln(Coche2.velocidadCrucero().toString());
-document.writeln(Coche3.velocidadCrucero().toString());
-document.writeln(potenciaMedia().toString());
-document.writeln(velocidadMedia().toString());
+let Envio1 = new Envio("AH23IZ", 20, 235.23, true);
+let Envio2 = new Envio("ABC3IZ", 25, 45.23, true);
+let Envio3 = new Envio("CF45XY", 15, 180.23, true);
+document.writeln(Envio1.imprime());
+document.writeln(Envio2.imprime());
+document.writeln(Envio3.imprime());
+document.writeln("El validador es " + Envio1.validarId().toString() + "<br/>");
+document.writeln("El validador es " + Envio2.validarId().toString() + "<br/>");
+document.writeln("El validador es " + Envio3.validarId().toString() + "<br/>");
+document.writeln(Envio1.calcular());
+document.writeln(Envio2.calcular());
+document.writeln(Envio3.calcular());
 //# sourceMappingURL=app.js.map
